@@ -12,10 +12,10 @@ class MessageBox extends StatefulWidget {
       {Key? key,
       required this.onTap,
       required this.avatarImage,
-      required this.goodsImage,
       required this.title,
       required this.content,
-      required this.dateTime})
+      this.goodsImage: '',
+      this.dateTime : ''})
       : super(key: key);
   @override
   _MessageBox createState() => _MessageBox();
@@ -31,8 +31,7 @@ class _MessageBox extends State<MessageBox> {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       child: Container(
-          height: 100,
-          padding: EdgeInsets.only(top: 10, bottom: 10),
+          height: 70,
           child: Row(
             children: [
               CircleAvatar(
@@ -40,7 +39,7 @@ class _MessageBox extends State<MessageBox> {
                   backgroundImage: NetworkImage(widget.avatarImage)),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 10, right: 10),
+                  padding: EdgeInsets.only(left: 10,top: 10, right: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +64,9 @@ class _MessageBox extends State<MessageBox> {
                   ),
                 ),
               ),
-              Image.network(widget.goodsImage, fit: BoxFit.cover),
+              widget.goodsImage != ''?Image.network(widget.goodsImage, fit: BoxFit.cover,width: 60,):Container(
+                child: null,
+              ),
             ],
           )),
     );

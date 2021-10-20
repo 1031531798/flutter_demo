@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class Store with ChangeNotifier {
-  int _homePageIndex;
+  int _homePageIndex = 1;
+  String _openMessage = 'chushi';
   String _searchText = '';
 
-  Store(this._homePageIndex);
 
   void changeHomePageIndex(int index) {
     _homePageIndex = index;
@@ -14,7 +13,11 @@ class Store with ChangeNotifier {
   void changeSearchText (String text) {
     this._searchText = text;
   }
+  void setMessage(String id) {
+    this._openMessage = id;
+  }
 
   get homePageIndex => _homePageIndex;
   get searchText => _searchText;
+  get openMessage => _openMessage;
 }

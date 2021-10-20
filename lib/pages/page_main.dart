@@ -11,7 +11,6 @@ class PageMain extends StatefulWidget {
 class _PageMain extends State<PageMain> {
   int _selectIndex = 0;
   final PageController _pageController = PageController(initialPage: 0);
-  final _title = Text('实例');
   // tabBottom config 底部配置
   final _list = <Map>[
     {
@@ -109,7 +108,7 @@ class _PageMain extends State<PageMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-        body: new PageView(
+        body: PageView(
           controller: _pageController,
           children: <Widget>[
             new PageHome(),

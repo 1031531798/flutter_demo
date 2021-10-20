@@ -14,7 +14,8 @@ class ArcButton extends StatefulWidget{
   Widget TextField;
   double? width;
   double? height;
-  ArcButton({Key? key, required this.onTap, required this.color, required this.TextField, this.width, this.height }): super(key:key);
+  Color borderColor;
+  ArcButton({Key? key, required this.onTap, required this.color, required this.TextField, this.width, this.height,this.borderColor: Colors.transparent }): super(key:key);
   @override
   _ArcButton createState() => _ArcButton();
 }
@@ -33,7 +34,7 @@ class _ArcButton extends State<ArcButton> {
         decoration: BoxDecoration(
           border: Border.all(
             width: 2.0,
-            color: Colors.transparent,
+            color: widget.borderColor,
           ),
           color: widget.color,
           borderRadius: const BorderRadius.all(const Radius.circular(40.0)),

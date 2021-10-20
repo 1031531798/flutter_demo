@@ -5,8 +5,14 @@ import 'package:pet/pages/page_main.dart';
 import 'package:provider/provider.dart';
 import './stateManage.dart';
 import './pages/search/search_index.dart';
+import './pages/chat/page_chat.dart';
 
-void main() => runApp(new MaterialApp(
+void main() => runApp(
+  MultiProvider(
+    providers: [
+      ChangeNotifierProvider.value(value: Store()),
+    ],
+    child: MaterialApp(
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -20,18 +26,21 @@ void main() => runApp(new MaterialApp(
       //注册路由表
       routes:{
         "/searchPage":(context) => SearchIndex(),
+        "/chat":(context) => PageChat(),
       } ,
       theme: new ThemeData(
         primaryColor: Colors.lightBlueAccent,
       ),
       title: 'Flutter Tutorial',
       home: new MyApp(),
-    ));
+    ),
+  )
+);
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => Store(1), child: new PageMain());
+        create: (context) => Store(), child: new PageMain());
   }
 }

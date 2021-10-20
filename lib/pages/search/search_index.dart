@@ -4,7 +4,8 @@ import 'package:pet/components/input/arc_input.dart';
 import 'package:pet/components/Button/Button.dart';
 import 'package:pet/components/Tag/Tag.dart';
 import 'package:dio/dio.dart';
-
+import 'package:provider/provider.dart';
+import '../../stateManage.dart';
 class SearchIndex extends StatefulWidget implements PreferredSizeWidget {
   @override
   _SearchIndex createState() => new _SearchIndex();
@@ -34,7 +35,10 @@ class _SearchIndex extends State<SearchIndex> {
     print(keyword ?? _searchController.text);
   }
   // 清除历史搜索
-  clearHistory() {}
+  clearHistory() {
+    var _user = Provider.of<Store>(context, listen: false).homePageIndex;
+    print(_user);
+  }
 
   // 生成历史搜索标签
   List<Container> getTagList(list) {

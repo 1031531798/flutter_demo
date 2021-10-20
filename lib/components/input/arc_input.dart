@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 
 class ArcInput extends StatefulWidget {
   Function? onTap;
-  Color? bgColor = Colors.yellow;
+  Color borderColor;
+  Color bgColor;
   Widget? prefix;
   Widget? suffix;
   double? width = 300;
   double? height = 40;
   bool readOnly;
-  InputDecoration? decoration;
+  InputDecoration? decoration = InputDecoration(
+      border: InputBorder.none
+  );
   TextEditingController? textController = TextEditingController();
   ArcInput({
     Key? key,
@@ -19,7 +22,8 @@ class ArcInput extends StatefulWidget {
     this.width,
     this.height,
     this.onTap,
-    this.bgColor,
+    this.bgColor: Colors.white,
+    this.borderColor: Colors.yellow,
     this.suffix,
     this.prefix,
   })
@@ -37,9 +41,10 @@ class _ArcInput extends State<ArcInput> {
             width: widget.width,
             height: widget.height,
             decoration: BoxDecoration(
+              color: widget.bgColor,
               border: Border.all(
                 width: 2.0,
-                color: Colors.yellow,
+                color: widget.borderColor,
               ),
               borderRadius: const BorderRadius.all(const Radius.circular(40.0)),
             ),
@@ -56,7 +61,9 @@ class _ArcInput extends State<ArcInput> {
                         child: TextField(
                           controller: widget.textController,
                           onTap: () {
-                            widget.onTap!();
+                            if (widget.onTap != null) {
+                              widget.onTap!();
+                            }
                           },
                           decoration: widget.decoration,
                           readOnly: widget.readOnly,
